@@ -1,3 +1,5 @@
+let placingPhase = true;
+
 
 function disableBoard(board) {
     board.forEach(r => r.style.pointerEvents = "none");
@@ -28,7 +30,7 @@ const rutor = document.querySelectorAll('.box');
         rutor.forEach(ruta => {
             ruta.addEventListener('click', () => {
 
-                if (aktivSpelare !== 1) return;
+                if (aktivSpelare !== 1 || !placingPhase) return;
                 if(aktuellBåt >= båtlängd.length){
                     alert("nu har du lagt ut alla dina båtar");
 
@@ -87,12 +89,9 @@ let valdaRutor2 = [];
 
        rutor2.forEach(ruta => {
         ruta.addEventListener('click', () => {
-            if (aktivSpelare !== 2) return;
+            if ((aktivSpelare !== 2) || (!placingPhase)) return;
             if(aktuellBåt2 >= båtlängd.length){
                 alert("nu har du lagt ut alla dina båtar");
-                rutor2.forEach(ruta => {
-                    ruta.style.backgroundColor = "white";
-                });
                 
                 return;
             }
@@ -131,6 +130,11 @@ let valdaRutor2 = [];
             
                 if (aktuellBåt2 === båtlängd.length) {
                     alert("Spelare 2 klar!");
+
+                    rutor2.forEach(ruta => {
+                        ruta.style.backgroundColor = "white";
+                    });
+                    
                     startGame();    // <-- NU STARTAR ATTACKFASEN
                 }
             }
@@ -154,6 +158,7 @@ const board2 = document.querySelectorAll(".ruta");
     let currentPlayer = 1;
 
 function startGame() {
+        placingPhase = false;
     alert("Spelet börjar! Spelare 1 attackerar.");
 
     board2.forEach(ruta => {
