@@ -1,6 +1,7 @@
 let placingPhase = true;
 let traffade1 = 0;
 let traffade2 = 0;
+let gameOver = false;
 
 
 function disableBoard(board) {
@@ -173,7 +174,7 @@ function startGame() {
 }
 
 function attackPlayer2(e) {
-    if (currentPlayer === 2) return;
+    if (currentPlayer === 2 || gameOver) return;
 
     let ruta = e.target;
     doAttack(ruta);
@@ -183,7 +184,7 @@ function attackPlayer2(e) {
 }
 
 function attackPlayer1(e) {
-    if (currentPlayer === 1) return;
+    if (currentPlayer === 1 || gameOver) return;
 
     let ruta = e.target;
     doAttack(ruta);
@@ -209,13 +210,11 @@ function doAttack(ruta) {
         }
         if(traffade1 >= 17){
             alert("spelare 2 winner")
-            currentPlayer = 0;
-
+            gameOver = true;
         }
         if(traffade2 >= 17){
             alert("spelare 1 winner")
-            currentPlayer = 0;
-
+            gameOver = true;
         }
         
 
