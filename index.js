@@ -4,6 +4,7 @@ let traffade2 = 0;
 let gameOver = false;
 
 
+
 function disableBoard(board) {
     board.forEach(r => r.style.pointerEvents = "none");
 }
@@ -153,7 +154,7 @@ let valdaRutor2 = [];
         });
     });
 
-    const board1 = document.querySelectorAll(".box");
+const board1 = document.querySelectorAll(".box");
 const board2 = document.querySelectorAll(".ruta");
 
 
@@ -179,6 +180,8 @@ function attackPlayer2(e) {
     let ruta = e.target;
     doAttack(ruta);
 
+    scrollUp(500);
+
     currentPlayer = 2;
 
 }
@@ -189,8 +192,24 @@ function attackPlayer1(e) {
     let ruta = e.target;
     doAttack(ruta);
 
+    scrollDown(500);
+
     currentPlayer = 1;
   
+}
+
+function scrollDown(amount) {
+  window.scrollBy({
+    top: amount,
+    behavior: "smooth"
+  });
+}
+
+function scrollUp(amount) {
+  window.scrollBy({
+    top: -amount,
+    behavior: "smooth"
+  });
 }
 
 function doAttack(ruta) {
@@ -211,10 +230,12 @@ function doAttack(ruta) {
         if(traffade1 >= 17){
             alert("spelare 2 winner")
             gameOver = true;
+
         }
         if(traffade2 >= 17){
             alert("spelare 1 winner")
             gameOver = true;
+
         }
         
 
