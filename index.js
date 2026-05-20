@@ -1,4 +1,6 @@
 let placingPhase = true;
+let traffade1 = 0;
+let traffade2 = 0;
 
 
 function disableBoard(board) {
@@ -140,7 +142,6 @@ let valdaRutor2 = [];
             }
             
     
-            // ✔ Kolla AFTER push
            /* if (valdaRutor2.length === båtlängd[aktuellBåt2]) {
                 alert("Båt klar!");
                 aktuellBåt2++;
@@ -172,7 +173,7 @@ function startGame() {
 }
 
 function attackPlayer2(e) {
-    if (currentPlayer !== 1) return;
+    if (currentPlayer === 2) return;
 
     let ruta = e.target;
     doAttack(ruta);
@@ -182,7 +183,7 @@ function attackPlayer2(e) {
 }
 
 function attackPlayer1(e) {
-    if (currentPlayer !== 2) return;
+    if (currentPlayer === 1) return;
 
     let ruta = e.target;
     doAttack(ruta);
@@ -196,14 +197,36 @@ function doAttack(ruta) {
 
     if (isHit) {
         ruta.style.backgroundColor = "red";
-        ruta.textContent = "X";
+        ruta.textContent = "";
+        if (currentPlayer === 1){
+            traffade1++;
+            
+
+        }
+        if (currentPlayer === 2){
+           traffade2++;
+
+        }
+        if(traffade1 >= 17){
+            alert("spelare 2 winner")
+            currentPlayer = 0;
+
+        }
+        if(traffade2 >= 17){
+            alert("spelare 1 winner")
+            currentPlayer = 0;
+
+        }
+        
+
     } else {
         ruta.style.backgroundColor = "lightblue";
-        ruta.textContent = "O";
+        ruta.textContent = "";
     }
 
     ruta.style.pointerEvents = "none";
 }
+
 
 
 
