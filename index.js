@@ -180,7 +180,8 @@ function attackPlayer2(e) {
     let ruta = e.target;
     doAttack(ruta);
 
-    scrollUp(500);
+    setTimeout(() => {scrollUp(1000);}, 1000);
+
 
     currentPlayer = 2;
 
@@ -191,8 +192,8 @@ function attackPlayer1(e) {
 
     let ruta = e.target;
     doAttack(ruta);
-
-    scrollDown(500);
+    
+    setTimeout(() => {scrollDown(1000);}, 1000);
 
     currentPlayer = 1;
   
